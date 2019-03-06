@@ -1,0 +1,24 @@
+version: '3.4'
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  export-rapport:
+    image: lblod/mandaten-download-generator-service:0.3.3
+    links:
+      - virtuoso:database
+    environment:
+      EXPORT_CRON_PATTERN: "0 0 4 * * *"
+      MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/system/export-mandatendatabank"
+    volumes:
+      - ./data/exports/rapport:/data/exports
+      - ./config/export/rapport:/config
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
