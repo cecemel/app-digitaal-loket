@@ -116,7 +116,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://file/files/"
   end
   match "/file-addresses/*path" do
-    Proxy.forward conn, path, "http://cache/file-addresses/"
+    Proxy.forward conn, path, "http://resource/file-addresses/"
+  end
+  match "/file-address-cache-statuses/*path" do
+    Proxy.forward conn, path, "http://resource/file-address-cache-statuses/"
   end
   post "/bbcdr-reports/*path" do
     Proxy.forward conn, path, "http://create-bbcdr/bbcdr-reports/"
@@ -192,6 +195,9 @@ defmodule Dispatcher do
   match "/toezicht-document-authenticity-types/*path" do
     Proxy.forward conn, path, "http://cache/toezicht-document-authenticity-types/"
   end
+  match "/toezicht-regulation-types/*path" do
+    Proxy.forward conn, path, "http://cache/toezicht-regulation-types/"
+  end
   match "/toezicht-inzending-types/*path" do
     Proxy.forward conn, path, "http://cache/toezicht-inzending-types/"
   end
@@ -233,6 +239,30 @@ defmodule Dispatcher do
 
   match "/email-headers/*path" do
     Proxy.forward conn, path, "http://resource/email-headers/"
+  end
+
+  ###############################################################
+  # master-log-domain.lisp
+  ###############################################################
+
+  match "/log-entries/*path" do
+    Proxy.forward conn, path, "http://resource/log-entries/"
+  end
+
+  match "/log-levels/*path" do
+    Proxy.forward conn, path, "http://resource/log-levels/"
+  end
+
+  match "/status-codes/*path" do
+    Proxy.forward conn, path, "http://resource/status-codes/"
+  end
+
+  match "/log-sources/*path" do
+    Proxy.forward conn, path, "http://resource/log-sources/"
+  end
+
+  match "/status-codes/*path" do
+    Proxy.forward conn, path, "http://resource/acm-idm-service-log-entries/"
   end
 
   #################################################################

@@ -9,7 +9,7 @@ x-logging:
 
 services:
   loket:
-    image: lblod/frontend-loket:0.13.11
+    image: lblod/frontend-loket:0.15.2
     links:
       - identifier:backend
     labels:
@@ -81,7 +81,7 @@ services:
     restart: always
     logging: *default-logging
   login:
-    image: lblod/acmidm-login-service:0.4.1
+    image: lblod/acmidm-login-service:0.7.0
     environment:
       MU_APPLICATION_AUTH_DISCOVERY_URL: "https://authenticatie-ti.vlaanderen.be/op"
       MU_APPLICATION_AUTH_CLIENT_ID: "a2c0d6ea-01b4-4f68-920b-10834a943c27"
@@ -169,6 +169,21 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  export-log-entries:
+    image: lblod/mandaten-download-generator-service:0.3.3
+    links:
+      - virtuoso:database
+    environment:
+      EXPORT_CRON_PATTERN: "0 0 3 * * *"
+      EXPORT_FILE_BASE: "log-entries"
+      MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/system/export-log-entries"
+    volumes:
+      - ./data/exports/log-entries:/data/exports
+      - ./config/export/log-entries:/config
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   package-toezicht:
     image: lblod/package-toezicht-dossier-service:0.1.4
     volumes:
@@ -199,15 +214,24 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  berichtencentrum-email-notification:
+    image: lblod/berichtencentrum-email-notification-service:0.1.2
+    restart: always
+    logging: *default-logging
+  berichtencentrum-deliver-email-service:
+    image: lblod/berichtencentrum-deliver-email-service:0.3.0
+    restart: always
+    logging: *default-logging
   berichtencentrum-sync-with-kalliope:
-    image: lblod/berichtencentrum-sync-with-kalliope-service:0.1.0
+    image: lblod/berichtencentrum-sync-with-kalliope-service:0.4.3
     environment:
-      RUN_INTERVAL: 5
-      KALLIOPE_PS_UIT_ENDPOINT: "https://kalliope-svc-test.abb.vlaanderen.be/glapi/poststuk-uit"
-      KALLIOPE_PS_IN_ENDPOINT: "https://kalliope-svc-test.abb.vlaanderen.be/glapi/poststuk-in"
-      MAX_MESSAGE_AGE: 10
-    links:
-      - database:database
+      KALLIOPE_PS_UIT_ENDPOINT: "https://kalliope-svc-test.abb.vlaanderen.be/api/poststuk-uit"
+      KALLIOPE_PS_IN_ENDPOINT: "https://kalliope-svc-test.abb.vlaanderen.be/api/poststuk-in"
+      RUN_INTERVAL_BERICHTEN: 5
+      RUN_INTERVAL_INZENDINGEN: 720
+      MAX_MESSAGE_AGE: 1
+      MAX_SENDING_ATTEMPTS: 20
+      INZENDING_BASE_URL: "https://besluiten.abb.lblod.info/toezicht/inzendingen"
     volumes:
       - ./data/files:/data/files
     labels:
@@ -231,11 +255,15 @@ services:
     restart: always
     labels:
       logging: true
-  download:
-    image: lblod/download-url-service:0.0.5
+  download-url-service:
+    image: lblod/loket-download-url-service:0.0.3
+    environment:
+      CACHING_MAX_RETRIES: 300
+      CACHING_CRON_PATTERN: '0 */15 * * * *'
+      MAX_PENDING_TIME_IN_SECONDS: 7200
+    links:
+      - virtuoso:database
     volumes:
-      - ./data/files:/share
+      - ./data/files:/data/files
     restart: always
     logging: *default-logging
-    environment:
-      CRON_PATTERN: "0 0 * * * *" # run every hour for now

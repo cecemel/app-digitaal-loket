@@ -1,13 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; MANDAAT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; this is a shared domain file, maintained in https://github.com/lblod/domain-files
 
-;; TODO: do we need this superclass?
-(define-resource entiteit ()
-  :class (s-prefix "prov:Entity")
-  :resource-base (s-url "http://data.lblod.info/id/entiteiten/")
-  :features '(include-uri)
-  :on-path "entiteiten")
-
 (define-resource fractie ()
   :class (s-prefix "mandaat:Fractie")
   :properties `((:naam :string ,(s-prefix "regorg:legalName"))
@@ -224,16 +217,6 @@
   :resource-base (s-url "http://data.lblod.info/id/rechtstreekse-verkiezingen/")
   :features '(include-uri)
   :on-path "rechtstreekse-verkiezingen")
-
-(define-resource tijdsgebonden-entiteit ()
-  :class (s-prefix "mandaat:TijdsgebondenEntiteit")
-  :properties `((:binding-einde :date ,(s-prefix "mandaat:bindingEinde"))
-                (:binding-start :date ,(s-prefix "mandaat:bindingStart")))
-  :has-one `((entiteit :via ,(s-prefix "mandaat:isTijdsspecialisatieVan")
-                       :as "is-tijdsspecialisatie-van"))
-  :resource-base (s-url "http://data.lblod.info/id/tijdsgebonden-entiteiten/")
-  :features '(include-uri)
-  :on-path "tijdsgebonden-entiteiten")
 
 (define-resource tijdsinterval ()
   :class (s-prefix "dct:PeriodOfTime")
