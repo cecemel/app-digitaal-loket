@@ -1,0 +1,6 @@
+INSERT DATA {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      <http://data.lblod.info/file-address-cache-statuses/ready-to-be-cached/0e5d12b4-61b0-4ce6-99cd-63e3825fa2df> a <http://mu.semte.ch/vocabularies/ext/fileAddressCacheStatus> .
+      <http://data.lblod.info/file-address-cache-statuses/ready-to-be-cached/0e5d12b4-61b0-4ce6-99cd-63e3825fa2df> <http://mu.semte.ch/vocabularies/ext/fileAddressCacheStatusLabel> "ready-to-be-cached" .
+    }
+}

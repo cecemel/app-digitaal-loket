@@ -269,8 +269,8 @@ services:
     restart: always
     labels:
       logging: true
-  download-url-service:
-    image: lblod/loket-download-url-service:0.1.0
+  download-url:
+    image: lblod/download-url-service:0.0.5
     environment:
       CACHING_MAX_RETRIES: 300
       CACHING_CRON_PATTERN: '0 */15 * * * *'
@@ -279,5 +279,11 @@ services:
       - virtuoso:database
     volumes:
       - ./data/files:/data/files
+    restart: always
+    logging: *default-logging
+  url-cache-preparator:
+    image: lblod/download-url-service:0.0.5 # TODO : Update the name once the service has tagged versions available
+    links:
+      - virtuoso:database
     restart: always
     logging: *default-logging
