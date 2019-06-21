@@ -6,7 +6,7 @@
                                    :as "rol")
              (contact-punt :via ,(s-prefix "schema:contactPoint")
                            :as "contactinfo"))
-  :has-many `((bestuurorgaan :via ,(s-prefix "lblodlg:heeftBestuursfunctie")
+  :has-many `((bestuursorgaan :via ,(s-prefix "lblodlg:heeftBestuursfunctie")
                              :inverse t
                              :as "bevat-in"))
   :resource-base (s-url "http://data.lblod.info/id/bestuursfuncties/")
@@ -36,7 +36,9 @@
                 (:email :string ,(s-prefix "schema:email"))
                 (:telephone :string ,(s-prefix "schema:telephone"))
                 (:fax :string ,(s-prefix "schema:faxNumber"))
-                (:website :string ,(s-prefix "schema:url")))
+                (:website :string ,(s-prefix "schema:url"))
+                (:adres-register-id :number ,(s-prefix "lblodlg:adresRegisterId"))
+                (:adres-register-uri :url ,(s-prefix "lblodlg:adresRegisterUri")))
   :resource-base (s-url "http://data.lblod.info/id/contactpunt/")
   :features '(include-uri)
   :on-path "contact-punten"

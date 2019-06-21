@@ -48,6 +48,8 @@ services:
     restart: "no"
   export-mandaten:
     restart: "no"
+  export-leidinggevenden:
+    restart: "no"
   export-inzendingen:
     restart: "no"
   export-log-entries:
@@ -63,4 +65,6 @@ services:
   sink:
     restart: "no"
   berichtencentrum-sync-with-kalliope:
+    restart: "no"
+  adressenregister:
     restart: "no"

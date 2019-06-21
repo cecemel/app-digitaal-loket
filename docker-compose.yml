@@ -9,7 +9,7 @@ x-logging:
 
 services:
   loket:
-    image: lblod/frontend-loket:0.15.2
+    image: lblod/frontend-loket:0.17.0
     links:
       - identifier:backend
     labels:
@@ -140,8 +140,22 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  export-leidinggevenden:
+    image: lblod/mandaten-download-generator-service:0.3.4
+    links:
+      - virtuoso:database
+    environment:
+      EXPORT_CRON_PATTERN: "0 0 5 * * *"
+      MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/system/export-leidinggevenden"
+    volumes:
+      - ./data/exports/leidinggevenden:/data/exports
+      - ./config/export/leidinggevenden:/config
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   export-mandaten:
-    image: lblod/mandaten-download-generator-service:0.3.3
+    image: lblod/mandaten-download-generator-service:0.3.4
     links:
       - virtuoso:database
     environment:
@@ -155,7 +169,7 @@ services:
     restart: always
     logging: *default-logging
   export-inzendingen:
-    image: lblod/mandaten-download-generator-service:0.3.3
+    image: lblod/mandaten-download-generator-service:0.3.4
     links:
       - virtuoso:database
     environment:
@@ -170,7 +184,7 @@ services:
     restart: always
     logging: *default-logging
   export-log-entries:
-    image: lblod/mandaten-download-generator-service:0.3.3
+    image: lblod/mandaten-download-generator-service:0.3.4
     links:
       - virtuoso:database
     environment:
@@ -256,7 +270,7 @@ services:
     labels:
       logging: true
   download-url-service:
-    image: lblod/loket-download-url-service:0.0.3
+    image: lblod/loket-download-url-service:0.1.0
     environment:
       CACHING_MAX_RETRIES: 300
       CACHING_CRON_PATTERN: '0 */15 * * * *'
@@ -265,5 +279,9 @@ services:
       - virtuoso:database
     volumes:
       - ./data/files:/data/files
+    restart: always
+    logging: *default-logging
+  adressenregister:
+    image: lblod/adressenregister-fuzzy-search-service:0.3.0
     restart: always
     logging: *default-logging
