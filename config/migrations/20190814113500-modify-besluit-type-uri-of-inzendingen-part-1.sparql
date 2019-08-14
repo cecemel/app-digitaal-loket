@@ -1,0 +1,83 @@
+PREFIX toezicht: <http://mu.semte.ch/vocabularies/ext/supervision/>
+
+DELETE {
+  GRAPH ?g {
+    ?s toezicht:decisionType ?oldBesluitType .
+  }
+}
+INSERT {
+  GRAPH ?g {
+    ?s toezicht:decisionType ?newBesluitType .
+  }
+}
+WHERE {
+  GRAPH ?g {
+    ?s a toezicht:InzendingVoorToezicht ; toezicht:decisionType ?oldBesluitType .
+  }
+  VALUES (?oldBesluitType ?newBesluitType) {
+    (
+      <http://data.lblod.info/DecisionType/02e210746b795a80ec114d09d5f372cd77be01b5f813776e09409c6044d39ef6>
+      <http://data.vlaanderen.be/id/concept/BesluitType/2ad00302cb9692488839cc9f73ba047924e8ce513788edea7b510c007288d83f>
+    )
+    (
+      <http://data.lblod.info/DecisionType/3d82659e4b72154262da432a30209f8f4edee689294cb17e8801a2ffde601d52>
+      <http://data.vlaanderen.be/id/concept/BesluitType/072413568f428f8490f55729f8e577979fcb9a28c4fc0727fbf539677bef1dce>
+    )
+    (
+      <http://data.lblod.info/DecisionType/1c0a7dae2be26ee48a31ca80508fbc6defb046791655283b5b91ee0d5242e675>
+      <http://data.vlaanderen.be/id/concept/BesluitType/04b60d435912abb7baf8458d83a6e40398c856562bc6f6102b1f919af7d38780>
+    )
+    (
+      <http://data.lblod.info/DecisionType/31174a1b9ba5400d8ccb6d3ecad0cf43372b54a362e1ae9abf597a67120119ca>
+      <http://data.vlaanderen.be/id/concept/BesluitType/ea47017b03888afbeef48cd6397901ba28e422445218172b6296a2fe10fe7b2d>
+    )
+    (
+      <http://data.lblod.info/DecisionType/36979ac1d57b103ec10732be09705e0183863c3db9726b6352344500e392f33c>
+      <http://data.vlaanderen.be/id/concept/BesluitType/cc90140329b7454f08e54e32087c5b669ac1f623f8da0aaf9ca1124b866ec3e7>
+    )
+    (
+      <http://data.lblod.info/DecisionType/46b254008bbca1354e632dc40cf550c6b313e523799cafd7200a48a19e09249f>
+      <http://data.vlaanderen.be/id/concept/BesluitType/332549cb03e26da6988b6f0282d36fc8a0054109c54ff9940040c8c5388791ce>
+    )
+    (
+      <http://data.lblod.info/DecisionType/4c7e8ce005e798d980ad0b7548b55a461cb6983c18eafbbb5e5cae617aae2e3d>
+      <http://data.vlaanderen.be/id/concept/BesluitType/89c2909471362e3400daec1c24492cc8d941c74534e5252586d4ddc4a6546a69>
+    )
+    (
+      <http://data.lblod.info/DecisionType/5a71a9e79b58c6b095cb2e575c7a397cc1fe80385e4d1deddd66745a03638f9f>
+      <http://data.vlaanderen.be/id/concept/BesluitType/daa8d948928350ca51b6e834349c3e0e2f17c96e55b056fa6201cbd9178256a9>
+    )
+    (
+      <http://data.lblod.info/DecisionType/6921c32162d2340fc4808e2b3e2ac4164d2fd53d9d4a722a894015fd2a559588>
+      <http://data.vlaanderen.be/id/concept/BesluitType/07a6bd60224486f3ad7e88e6b8353768c433f3f7f8f0dd6d7a9b5163a98b137c>
+    )
+    (
+      <http://data.lblod.info/DecisionType/80536574a0ec8ea88685510b713aa566a5f16cfd575fabd8f7943bccaaad00e4>
+      <http://data.vlaanderen.be/id/concept/BesluitType/ca9fb39a29c467452d859b3ae1bee5a898d50528cbec7f9bbf2288f7246474c3>
+    )
+    (
+      <http://data.lblod.info/DecisionType/898539285cb768813b1078651adc0c31c057423dbf421e254c5ded013a436284>
+      <http://data.vlaanderen.be/id/concept/BesluitType/dc7bc423ba1a7c5c548df129c6cf668c41d732715e73c4c6b94d46a2fb5ca023>
+    )
+    (
+      <http://data.lblod.info/DecisionType/9ce1fbfa68b14a5599b266f0e0211bf34b6be9d3792e4ee4a893de6525bd1331>
+      <http://data.vlaanderen.be/id/concept/BesluitType/68e1aeeae8ad75deed442ea9dbfd6bb3507a56662efb9e830a56ac0bfbb15934>
+    )
+    (
+      <http://data.lblod.info/DecisionType/a6f91929f3d9625991863c2fec4f6a4fe4287753eaefb901faaaa61002ba378a>
+      <http://data.vlaanderen.be/id/concept/BesluitType/63783a50fb42227a1b4e0ced639327f4069490b327f17c379876bae2e224bda9>
+    )
+    (
+      <http://data.lblod.info/DecisionType/c52ff4c14694c22c55dcf01b3f30b5dc00bc8b264260488b2d14de80953964be>
+      <http://data.vlaanderen.be/id/concept/BesluitType/de82cdc6226c99f9467e432d6fb9d6e7bc3f6ea3bcd918b9b3bd80c3037a4938>
+    )
+    (
+      <http://data.lblod.info/DecisionType/d68c36802386c988df798ed577b96d8e0f010441f74628f4d2dbd3196c1c6ac3>
+      <http://data.vlaanderen.be/id/concept/BesluitType/1ebdb01bdb1c0131eabbc9d695d2929e892b9f5cb0cba35653ec22c7b340114e>
+    )
+    (
+      <http://data.lblod.info/DecisionType/d6e90eb6e3ceda4f9a47b214b3ab47274670d3621f34bf8984f4c7d99f97dcc2>
+      <http://data.vlaanderen.be/id/concept/BesluitType/b105d2129c755e122dc702d77c8a109cea81d5934048da11e9481916f914297e>
+    )
+  }
+}
