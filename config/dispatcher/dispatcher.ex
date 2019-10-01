@@ -289,6 +289,37 @@ defmodule Dispatcher do
   end
 
   #################################################################
+  # personeelsdatabank
+  #################################################################
+  match "/employee-datasets/*path" do
+    Proxy.forward conn, path, "http://cache/employee-datasets"
+  end
+
+  match "/employee-period-slices/*path" do
+    Proxy.forward conn, path, "http://cache/employee-period-slices"
+  end
+
+  match "/employee-observations/*path" do
+    Proxy.forward conn, path, "http://cache/employee-observations"
+  end
+
+  match "/employee-time-periods/*path" do
+    Proxy.forward conn, path, "http://cache/employee-time-periods"
+  end
+
+  match "/educational-levels/*path" do
+    Proxy.forward conn, path, "http://cache/educational-levels"
+  end
+
+  match "/working-time-categories/*path" do
+    Proxy.forward conn, path, "http://cache/working-time-categories"
+  end
+
+  match "/employee-legal-statuses/*path" do
+    Proxy.forward conn, path, "http://cache/employee-legal-statuses"
+  end
+
+  #################################################################
   # adressenregister
   #################################################################
   match "/adressenregister/*path" do

@@ -40,3 +40,9 @@
 
 (add-prefix "locn" "http://www.w3.org/ns/locn#")
 (add-prefix "adres" "https://data.vlaanderen.be/ns/adres#")
+
+(add-prefix "empl" "http://lblod.data.gift/vocabularies/employee/")
+(add-prefix "sdmxDim" "http://purl.org/linked-data/sdmx/2009/dimension#")
+(add-prefix "sdmxCode" "http://purl.org/linked-data/sdmx/2009/code#")
+(add-prefix "qb" "http://purl.org/linked-data/cube#")
+(add-prefix "time" "http://www.w3.org/2006/time#")
