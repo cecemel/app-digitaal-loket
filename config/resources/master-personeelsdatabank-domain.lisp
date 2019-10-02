@@ -50,7 +50,7 @@
   :on-path "employee-time-periods")
 
 (define-resource educational-level ()
-  :class (s-prefix "empl:EducationLevel")
+  :class (s-prefix "empl:EducationalLevel")
   :properties `((:label :string ,(s-prefix "skos:prefLabel")))
   :resource-base (s-url "http://data.lblod.info/educational-levels/")
   :features '(include-uri)
