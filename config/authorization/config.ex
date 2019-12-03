@@ -139,21 +139,7 @@ defmodule Acl.UserGroups.Config do
                         "http://data.vlaanderen.be/ns/mandaat#Mandataris",
                         "http://www.w3.org/ns/person#Person",
                         "http://www.w3.org/ns/adms#Identifier",
-                        "http://purl.org/dc/terms/PeriodOfTime",
-                        "http://www.w3.org/ns/org#Site",
-                        "http://schema.org/PostalAddress",
-                        "http://www.w3.org/ns/org#Post",
-                        "http://www.w3.org/ns/org#Organization" ] } },
-                  %GraphSpec{
-                    graph: "http://mu.semte.ch/graphs/organizations/",
-                    constraint: %ResourceConstraint{
-                      resource_types: [ "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid" ],
-                      predicates: %NoPredicates{
-                        except: [
-                          "http://www.w3.org/ns/org#hasPrimarySite",
-                          "http://www.w3.org/ns/org#linkedTo",
-                          "http://schema.org/contactPoint",
-                          "http://www.w3.org/ns/org#hasPost" ] } } } ] },
+                        "http://purl.org/dc/terms/PeriodOfTime" ] } } ] },
       %GroupSpec{
         name: "o-mdb-wf",
         useage: [:write, :read_for_write],
@@ -168,21 +154,7 @@ defmodule Acl.UserGroups.Config do
                         "http://data.vlaanderen.be/ns/mandaat#Mandataris",
                         "http://www.w3.org/ns/person#Person",
                         "http://www.w3.org/ns/adms#Identifier",
-                        "http://purl.org/dc/terms/PeriodOfTime",
-                        "http://www.w3.org/ns/org#Site",
-                        "http://schema.org/PostalAddress",
-                        "http://www.w3.org/ns/org#Post",
-                        "http://www.w3.org/ns/org#Organization" ] } },
-                  %GraphSpec{
-                    graph: "http://mu.semte.ch/graphs/organizations/",
-                    constraint: %ResourceConstraint{
-                      resource_types: [ "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid" ],
-                      predicates: %NoPredicates{
-                        except: [
-                          "http://www.w3.org/ns/org#hasPrimarySite",
-                          "http://www.w3.org/ns/org#linkedTo",
-                          "http://schema.org/contactPoint",
-                          "http://www.w3.org/ns/org#hasPost" ] } } } ] },
+                        "http://purl.org/dc/terms/PeriodOfTime" ] } } ] },
 
       # // BBCDR
       %GroupSpec{
@@ -211,7 +183,7 @@ defmodule Acl.UserGroups.Config do
                         "http://mu.semte.ch/vocabularies/ext/FileAddress"
                       ] } } ] },
 
-      # // LEIDINGGEVENDE
+      # // LEIDINGGEVENDEN
       %GroupSpec{
         name: "o-leidinggevende-rwf",
         useage: [:read, :write, :read_for_write],
@@ -220,7 +192,8 @@ defmodule Acl.UserGroups.Config do
                     graph: "http://mu.semte.ch/graphs/organizations/",
                     constraint: %ResourceConstraint{
                       resource_types: [
-                        "http://schema.org/PostalAddress",
+                        "http://schema.org/ContactPoint",
+                        "http://www.w3.org/ns/locn#Address",
                         "http://data.lblod.info/vocabularies/leidinggevenden/Functionaris",
                         "http://data.vlaanderen.be/ns/persoon#Geboorte",
                         "http://www.w3.org/ns/person#Person",

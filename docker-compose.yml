@@ -9,7 +9,7 @@ x-logging:
 
 services:
   loket:
-    image: lblod/frontend-loket:0.17.0
+    image: lblod/frontend-loket:0.21.5
     links:
       - identifier:backend
     labels:
@@ -17,7 +17,7 @@ services:
     restart: always
     logging: *default-logging
   identifier:
-    image: semtech/mu-identifier:1.5.0
+    image: semtech/mu-identifier:1.7.0
     labels:
       - "logging=true"
     restart: always
@@ -65,7 +65,7 @@ services:
     restart: always
     logging: *default-logging
   cache:
-    image: madnificent/mu-elixir-cache:0.1.0
+    image: semtech/mu-cache:2.0.0
     links:
       - resource:backend
     labels:
@@ -125,7 +125,7 @@ services:
     restart: always
     logging: *default-logging
   deliver-bbcdr:
-    image: lblod/deliver-bbcdr-rapporten-service:0.3.2
+    image: lblod/deliver-bbcdr-rapporten-service:0.3.5
     volumes:
       - ./data/files:/data/files
     environment:
@@ -146,6 +146,7 @@ services:
       - virtuoso:database
     environment:
       EXPORT_CRON_PATTERN: "0 0 5 * * *"
+      EXPORT_FILE_BASE: "leidinggevenden"
       MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/system/export-leidinggevenden"
     volumes:
       - ./data/exports/leidinggevenden:/data/exports
@@ -209,21 +210,11 @@ services:
     restart: always
     logging: *default-logging
   deliver-toezicht:
-    image: lblod/deliver-toezicht-dossier-service:0.1.1
+    image: lblod/deliver-toezicht-dossier-service:0.1.4
     volumes:
       - ./data/files:/data/files
     environment:
       PACKAGE_CRON_PATTERN: '0 0 * * * *'
-    labels:
-      - "logging=true"
-    restart: always
-    logging: *default-logging
-  toezicht-reporting:
-    image: lblod/toezicht-inzending-reporting-service:0.3.5
-    volumes:
-      - ./data/toezicht-reports:/data/output
-    links:
-      - virtuoso:database
     labels:
       - "logging=true"
     restart: always
@@ -237,7 +228,7 @@ services:
     restart: always
     logging: *default-logging
   berichtencentrum-sync-with-kalliope:
-    image: lblod/berichtencentrum-sync-with-kalliope-service:0.4.3
+    image: lblod/berichtencentrum-sync-with-kalliope-service:0.4.11
     environment:
       KALLIOPE_PS_UIT_ENDPOINT: "https://kalliope-svc-test.abb.vlaanderen.be/api/poststuk-uit"
       KALLIOPE_PS_IN_ENDPOINT: "https://kalliope-svc-test.abb.vlaanderen.be/api/poststuk-in"
@@ -282,6 +273,6 @@ services:
     restart: always
     logging: *default-logging
   adressenregister:
-    image: lblod/adressenregister-fuzzy-search-service:0.3.0
+    image: lblod/adressenregister-fuzzy-search-service:0.4.0
     restart: always
     logging: *default-logging
