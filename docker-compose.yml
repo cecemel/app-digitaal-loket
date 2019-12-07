@@ -9,7 +9,7 @@ x-logging:
 
 services:
   loket:
-    image: lblod/frontend-loket:0.21.7
+    image: lblod/frontend-loket:0.22.0
     links:
       - identifier:backend
     labels:
@@ -31,7 +31,7 @@ services:
     restart: always
     logging: *default-logging
   database:
-    image: semtech/mu-authorization:0.2.0
+    image: semtech/mu-authorization:0.6.0-beta.2
     environment:
       MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
@@ -81,7 +81,7 @@ services:
     restart: always
     logging: *default-logging
   login:
-    image: lblod/acmidm-login-service:0.7.0
+    image: lblod/acmidm-login-service:0.8.0
     environment:
       MU_APPLICATION_AUTH_DISCOVERY_URL: "https://authenticatie-ti.vlaanderen.be/op"
       MU_APPLICATION_AUTH_CLIENT_ID: "a2c0d6ea-01b4-4f68-920b-10834a943c27"
@@ -228,12 +228,12 @@ services:
     restart: always
     logging: *default-logging
   berichtencentrum-sync-with-kalliope:
-    image: lblod/berichtencentrum-sync-with-kalliope-service:0.4.11
+    image: lblod/berichtencentrum-sync-with-kalliope-service:0.4.12
     environment:
       KALLIOPE_PS_UIT_ENDPOINT: "https://kalliope-svc-test.abb.vlaanderen.be/api/poststuk-uit"
       KALLIOPE_PS_IN_ENDPOINT: "https://kalliope-svc-test.abb.vlaanderen.be/api/poststuk-in"
-      RUN_INTERVAL_BERICHTEN: 5
-      RUN_INTERVAL_INZENDINGEN: 720
+      BERICHTEN_CRON_PATTERN: "*/5 * * * *"
+      INZENDINGEN_CRON_PATTERN: "* 22 * * *"
       MAX_MESSAGE_AGE: 1
       MAX_SENDING_ATTEMPTS: 20
       INZENDING_BASE_URL: "https://besluiten.abb.lblod.info/toezicht/inzendingen"
@@ -276,3 +276,5 @@ services:
     image: lblod/adressenregister-fuzzy-search-service:0.4.0
     restart: always
     logging: *default-logging
+  person-reconciliation:
+    image: lblod/person-reconciliation-service:0.1.1
