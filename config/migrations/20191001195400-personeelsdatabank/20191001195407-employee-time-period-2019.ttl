@@ -1,4 +1,0 @@
-<http://data.lblod.info/employee-time-periods/88260830-7a2f-45b4-a262-b1e46ed303d1> a <http://lblod.data.gift/vocabularies/employee/EmployeeTimePeriod> ;
-    <http://mu.semte.ch/vocabularies/core/uuid> "88260830-7a2f-45b4-a262-b1e46ed303d1" ;
-    <http://www.w3.org/2004/02/skos/core#prefLabel> "2019" ;
-    <http://www.w3.org/2006/time#hasBeginning> "2019-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .

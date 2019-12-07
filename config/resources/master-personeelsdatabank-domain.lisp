@@ -23,9 +23,10 @@
 
 (define-resource employee-observation () ;; < qb:Observation
   :class (s-prefix "empl:EmployeeObservation")
-  :properties `((:number-of-ftes :number ,(s-prefix "empl:numberOfFTEs"))
-                (:number-of-persons :number ,(s-prefix "empl:numberOfPersons")))
-  :has-one `((educational-level :via ,(s-prefix "sdmxDim:educationLev")
+  :properties `((:value :number ,(s-prefix "sdmxMeasure:obsValue")))
+  :has-one `((employee-unit-measure :via ,(s-prefix "sdmxAttr:unitMeasure")
+                                    :as "unit-measure")
+             (educational-level :via ,(s-prefix "sdmxDim:educationLev")
                                 :as "educational-level")
              (geslacht-code :via ,(s-prefix "sdmxDim:sex")
                             :as "sex")
@@ -48,6 +49,13 @@
                                      :as "slices"))
   :resource-base (s-url "http://data.lblod.info/employee-time-periods/")
   :on-path "employee-time-periods")
+
+(define-resource employee-unit-measure ()
+  :class (s-prefix "empl:UnitMeasure")
+  :properties `((:label :string ,(s-prefix "skos:prefLabel")))
+  :resource-base (s-url "http://data.lblod.info/employee-unit-measures/")
+  :features '(include-uri)
+  :on-path "employee-unit-measures")
 
 (define-resource educational-level ()
   :class (s-prefix "empl:EducationalLevel")

@@ -319,6 +319,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/employee-legal-statuses/"
   end
 
+  match "/employee-unit-measures/*path" do
+    Proxy.forward conn, path, "http://cache/employee-unit-measures/"
+  end
+
   #################################################################
   # adressenregister
   #################################################################
