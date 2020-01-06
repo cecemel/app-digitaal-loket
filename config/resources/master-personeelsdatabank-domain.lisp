@@ -1,10 +1,13 @@
 (define-resource employee-dataset ()
   :class (s-prefix "empl:EmployeeDataset") ;; < qb:DataSet
-  :properties `((:label :string ,(s-prefix "rdfs:label")))
+  :properties `((:title :string ,(s-prefix "dct:title"))
+                (:description :string ,(s-prefix "dct:description")))
   :has-one `((bestuurseenheid :via ,(s-prefix "dct:creator")
                               :as "bestuurseenheid"))
   :has-many `((employee-period-slice :via ,(s-prefix "qb:slice")
-                                     :as "periods"))
+                                     :as "periods")
+              (employee-unit-measure :via ,(s-prefix "dct:subject")
+                                     :as "subjects"))
   :resource-base (s-url "http://data.lblod.info/employee-datasets/")
   :on-path "employee-datasets")
 
