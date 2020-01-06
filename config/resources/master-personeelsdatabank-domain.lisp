@@ -1,7 +1,8 @@
 (define-resource employee-dataset ()
   :class (s-prefix "empl:EmployeeDataset") ;; < qb:DataSet
   :properties `((:title :string ,(s-prefix "dct:title"))
-                (:description :string ,(s-prefix "dct:description")))
+                (:description :string ,(s-prefix "dct:description"))
+                (:modified :datetime ,(s-prefix "dct:modified")))
   :has-one `((bestuurseenheid :via ,(s-prefix "dct:creator")
                               :as "bestuurseenheid"))
   :has-many `((employee-period-slice :via ,(s-prefix "qb:slice")
