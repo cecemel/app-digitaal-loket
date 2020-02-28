@@ -126,7 +126,7 @@ defmodule Acl.UserGroups.Config do
                       resource_types: [
                         "http://xmlns.com/foaf/0.1/Person",
                         "http://xmlns.com/foaf/0.1/OnlineAccount",
-                        "http://www.w3.org/ns/adms#Identifier"
+                        "http://www.w3.org/ns/adms#Identifier",
                       ] } } ] },
 
       # // ORG-MANDATENBEHEER
@@ -250,6 +250,19 @@ defmodule Acl.UserGroups.Config do
                         "http://lblod.data.gift/vocabularies/employee/EmployeeObservation"
                       ] } }
                 ] },
+
+
+      # // LOKETADMIN
+        %GroupSpec{
+          name: "o-admin-rwf",
+          useage: [:read, :write, :read_for_write],
+          access: access_by_role( "LoketAdmin" ),
+          graphs: [ %GraphSpec{
+                      graph: "http://mu.semte.ch/graphs/organizations/",
+                      constraint: %ResourceConstraint{
+                        resource_types: [
+                          "http://lblod.data.gift/vocabularies/reporting/Report",
+                        ] } } ] },
 
 
       # // USER HAS NO DATA
